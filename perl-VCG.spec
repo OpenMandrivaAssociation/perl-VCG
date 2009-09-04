@@ -1,7 +1,7 @@
 %define module  VCG
 %define name    perl-%{module}
 %define version 0.5
-%define release %mkrel 11
+%define release %mkrel 12
 
 Name:           %{name}
 Version:        %{version}
