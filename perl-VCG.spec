@@ -1,22 +1,16 @@
 %define module  VCG
-%define name    perl-%{module}
-%define version 0.5
-%define release %mkrel 12
 
-Name:           %{name}
-Version:        %{version}
-Release:        %{release}
-Summary:        %{module} module for perl
-License:        GPL or Artistic
-Group:          Development/Perl
-Url:            http://search.cpan.org/dist/%{module}
-Source:         http://www.cpan.org/modules/by-module/VCG/%{module}-%{version}.tar.bz2
-%if %{mdkversion} < 1010
-BuildRequires:  perl-devel
-%endif
-BuildRequires:  perl(IPC::Run)
-BuildArch:      noarch
-BuildRoot:      %{_tmppath}/%{name}-%{version}
+Name:		perl-%{module}
+Version:	0.5
+Release:	13
+Summary:	%{module} module for perl
+License:	GPL or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{module}
+Source:		http://www.cpan.org/modules/by-module/VCG/%{module}-%{version}.tar.bz2
+BuildRequires:	perl-devel
+BuildRequires:	perl(IPC::Run)
+BuildArch:	noarch
 
 %description
 This module provides an interface to to the vcg graphing tool. It
@@ -40,22 +34,58 @@ http://mail.gnome.org/archives/dia-list/2003-February/msg00029.html.
 %setup -q -n %{module}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
-%{__make} test
+make test
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
-%clean 
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc Changes INSTALL README
 %{perl_vendorlib}/VCG.pm
 %{_mandir}/*/*
+
+
+
+%changelog
+* Fri Sep 04 2009 Thierry Vignaud <tvignaud@mandriva.com> 0.5-12mdv2010.0
++ Revision: 430613
+- rebuild
+
+* Wed Jul 23 2008 Thierry Vignaud <tvignaud@mandriva.com> 0.5-11mdv2009.0
++ Revision: 242145
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Sat Sep 15 2007 Guillaume Rousse <guillomovitch@mandriva.org> 0.5-9mdv2008.0
++ Revision: 87075
+- rebuild
+
+
+* Tue Aug 29 2006 Guillaume Rousse <guillomovitch@mandriva.org> 0.5-8mdv2007.0
+- Rebuild
+
+* Tue Dec 20 2005 Nicolas Lécureuil <neoclust@mandriva.org> 0.5-7mdk
+- Fix BuildRequires
+
+* Tue Dec 20 2005 Guillaume Rousse <guillomovitch@mandriva.org> 0.5-6mdk
+- spec cleanup
+- better URL
+- drop explicit require
+
+* Mon Dec 20 2004 Guillaume Rousse <guillomovitch@mandrake.org> 0.5-5mdk
+- fix buildrequires in a backward compatible way
+- %%makeinstall_std macro
+
+* Fri Jul 23 2004 Guillaume Rousse <guillomovitch@mandrake.org> 0.5-4mdk 
+- rpmbuildupdate aware
+
+* Wed Jan 21 2004 Lenny Cartier <lenny@mandrakesoft.com> 0.5-3mdk
+- fix upload
 
