@@ -6,7 +6,7 @@ Release:	15
 Summary:	%{module} module for perl
 License:	GPL or Artistic
 Group:		Development/Perl
-Url:		http://search.cpan.org/dist/%{module}
+Url:		https://search.cpan.org/dist/%{module}
 Source:		http://www.cpan.org/modules/by-module/VCG/%{module}-%{version}.tar.bz2
 BuildRequires:	perl-devel
 BuildRequires:	perl(IPC::Run)
